@@ -47,6 +47,9 @@ ptr_name[i] == *(ptr_name + i);		// pointer to arr[i] element
 void name(char s[], char *s);		// both formal parameters in a func prototype are equivalent
 func_name(&arr[2], arr+2);		// passing a pointers to the beginning of the subarray
 
+char days[2][13] = { {0, 1, 2, 3}, {0, 1, 3, 4} };		// two dimension array
+void name(int days[2][13], int days[][13], int (*days)[13]) { }		// the same arguments
+
 void arr_copy(char *to_here, char *from_here) {
 	while (*to_here++ = *from_here++)
 		;
@@ -57,6 +60,66 @@ int str_compare(char *s, char *t) {
 			return 0;
 	return *s - *t;
 }
+
+
+// STRUCTURES
+struct point {
+	int x;
+	int y;
+};
+struct point pt1;		// structure of type struct point
+struct point pt2 = { 320, 200 };		//structure initialization
+int x = pt_max.x;		// structure member access
+
+struct rect {
+	struct point pt1;
+	struct point pt2;
+};
+struct rect screen;
+int x = screen.pt1.x;		// nested structure member access
+
+struct point *pp;		// declaration of pointer to a struct of type struct point
+pp = &point;
+int x = (*pp).x;		// structure member access via pointer
+int x = pp->x;		// structure member access via pointer
+
+struct {
+	int len;
+	char *str;
+} *p;
+int x = ++p->len;		// increment value of structure member
+
+struct key {		// struct of type key defines an array keytab of struct of this type
+	char * word;
+	int count;
+} keytab[10];
+
+struct key {		// struct initialization, braces are not necessary
+	char * word;
+	int count;
+} keytab[] = {
+	{ "auto", 0 },
+	{ "break", 0}
+}
+
+struct point make_struct_func(int x, int y) {
+	struct point temp;
+	temp.x = x; temp.y = y;
+	return temp;
+}
+struct point add_struct_func(struct point p1, struct point p2) {
+	p1.x += p2.x; p1.y += p2.y;
+	return p1;
+}
+
+
+// BINARY TREE
+struct tree_node {
+	char *word;
+	int count;
+	struct tree_node *left;
+	struct tree_node *right;
+};
 
 
 // RECURSION
@@ -73,6 +136,12 @@ void recursionTailCall(int n) {
 
 // POINTERS
 // may be compared if points to the same array
+char *arr_ptr[10];		// declaration of array, each element of which is a pointer to a char
+int (*arr_ptr)[10];		// pointer to array[10] of int
+
+void *func_name();		// function returning pointer to void
+void (*func_name)();		// pointer to function returning void
+
 char *ptr_name = &var_name;		// pointer of type char points to the address of var_name
 char new_var_name = *ptr_name;		// dereferencing operator, get access to the object`s value
 ++*ptr_name; (*ptr_name)++;		// increment what pointer points to
@@ -82,6 +151,7 @@ void swap(int *px, int *py) {		// function receive two pointers as an arguments
 	temp = *px; *px = *py; *py = temp;
 }
 swap(&var_one, &var_two);		// function call, pass pointers
+void name(int (*func_name)(void *, void *));		// func receive func that has two void* args and returns int
 
 
 // MEMORY MANAGEMENT
