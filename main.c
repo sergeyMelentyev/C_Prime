@@ -68,21 +68,22 @@ int str_compare(char *s, char *t) {
 }
 
 /* STRUCTURES */
-struct point {
-	int x; int y;
-};
-struct point pt1;		// structure of type struct point
+struct point {	int x; int y; };		// shape of structure of type struct point, no storage reserved
+struct point { ... } x, y, z;		// structure declaration defines a type, followed by a list of vars
+
+struct point pt1;		// defines a var pt1 which is a structure of type struct point
 struct point pt2 = { 320, 200 };		//structure initialization
 int x = pt_max.x;		// structure member access
 
 struct rect {
-	struct point pt1; struct point pt2;
+	struct point pt1;
+	struct point pt2;
 };
 struct rect screen;
 int x = screen.pt1.x;		// nested structure member access
 
 struct point *pp;		// declaration of pointer to a struct of type struct point
-pp = &point;
+pp = &pt1;
 int x = (*pp).x;		// structure member access via pointer
 int x = pp->x;		// structure member access via pointer
 
@@ -113,6 +114,13 @@ struct point add_struct_func(struct point p1, struct point p2) {
 struct tree_node {
 	char *word; int count; struct tree_node *left; struct tree_node *right;
 };
+
+/* UNION */
+union u_tag {		// a single var can hold any one of several types
+	int ival;
+	float fval;
+	char cval;
+} u;
 
 /* RECURSION */
 void recursionCall(int n) {
@@ -156,6 +164,13 @@ int column = 6;
 int ar[row][column];		// two dimension array of dynamic length
 ar = (int (*)[column])malloc(row * column * sizeof(int));		// array row * column
 free(ar);
+
+/* INPUT OUTPUT */
+while ((c = getchar()) != EOF)
+	// read one character at a time
+while (scanf("%d %s %d", &day, month, &year) != EOF)
+	// read from input ignores blanks, tabs, white spaces
+
 
 /* ALGORITHMS */
 int binary_search(int value, int arr_body[], int arr_length) {
