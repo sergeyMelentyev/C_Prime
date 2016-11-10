@@ -206,6 +206,10 @@ return 		// return from the current funtion immediately
 info threads		// get a list of threads, * shows thread the debugger is in
 thread 2		// jump to the second thread
 
+/* DEBUGGING VALGRIND*/
+valgrind --leak-check=yes myprog arg1 arg2		// run program under memcheck
+
+
 /* ALGORITHMS */
 int binary_search(int value, int arr_body[], int arr_length) {
 	int low, high, mid; low = 0; high = arr_length - 1;
