@@ -171,6 +171,40 @@ while ((c = getchar()) != EOF)
 while (scanf("%d %s %d", &day, month, &year) != EOF)
 	// read from input ignores blanks, tabs, white spaces
 
+/* DEBUGGING GDB*/
+run 		// run the program from the start
+run args 		// run the program from the start with the given command-line args
+
+list main 		//display lines of code at the requested point
+list		// show more lines after requested point
+
+break function_name		// set a break point at a certain function
+break main.c:105		// set a break point before a certain line of code
+break 105		// the same as above if you already stopped in main.c
+watch var_name 		// break if the value of the given var chages
+info break		// show all break points
+dis 1		// disable the first break point
+del 1		// delete the first break point
+
+set $gdb_name=&prog_arr_name[3]		// set a new GDB valiable and bound it to the target
+print *$gdb_name		// print current value
+print *(%gdb_name++)		// print current value and step to the next
+print *data		// look at data within this frame
+print *data@10		// printing a sequence of elements in an array
+info local		// show all local variables
+info args 		// check the input arguments
+disp var_name		// display current value of var while continue through the loop
+undisp 1		// turn off auto printing variable value
+
+backtrace		// show the stack of frames. Numerically lowest frame at the physical top of the list
+frame 1		//  what the data looks like in frame 1
+down		// one step in the stack relative to the current frame
+next		// step through the next line
+continue		// continue from where we are
+return 		// return from the current funtion immediately
+
+info threads		// get a list of threads, * shows thread the debugger is in
+thread 2		// jump to the second thread
 
 /* ALGORITHMS */
 int binary_search(int value, int arr_body[], int arr_length) {
