@@ -11,6 +11,7 @@ gcc main.c -o new_name -lm -g -Wall -O3 -std=gnu11
 enum boolean { NO, YES };		// enumeration constant
 char name = '';		// character constant
 char array[] = "";		// string constant
+char *str = "";		//string literal
 
 /* QUALIFIERS AND MODIFICATORS */
 auto int x;		// in block auto memory manager, local scope, init with random value
@@ -110,6 +111,17 @@ struct point add_struct_func(struct point p1, struct point p2) {
 	p1.x += p2.x; p1.y += p2.y; return p1;
 }
 
+// STRUCT ON THE HEAP
+typedef struct {
+	float heightInMeters; int weightInKilos;
+} Person;
+float bmi(Person *p) {
+	return p->weightInKilos / (p->heightInMeters * p->heightInMeters);
+}
+Person *mikey = (Person *)malloc(sizeof(Person));
+mikey->weightInKilos = 96; mikey->heightInMeters = 1.7;
+float mikey_bmi = bmi(mikey);
+
 /* BINARY TREE */
 struct tree_node {
 	char *word; int count; struct tree_node *left; struct tree_node *right;
@@ -134,6 +146,7 @@ void recursionTailCall(int n) {
 }
 
 /* POINTERS */
+int *my_ptr = NULL;		// null pointer
 char *arr_ptr[10];		// declaration of array, each element of which is a pointer to a char
 int (*arr_ptr)[10];		// pointer to array[10] of int
 
